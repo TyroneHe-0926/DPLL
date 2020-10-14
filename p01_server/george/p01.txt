@@ -1,0 +1,18 @@
+Sign (meaning type your name into the appropriate space) 
+the academic integrity statement in this file.  If this is not ``signed'', 
+we will not mark your assignment and you will receive a grade of 0 for 
+the assignment.
+
+Integrity Statement: I declare the following statements to be true:
+* The work I submit in this assessment (including all of its files) is 
+entirely my own.
+* I am aware that misconduct related to course assessments can result 
+in significant penalties, possibly including failure in the course and 
+suspension (this is covered in Policy 71: 
+	https://uwaterloo.ca/secretariat/policies-procedures-guidelines/policy-71).
+* I am aware that oral exams may be conducted randomly to ensure 
+academic integrity of submissions.
+
+Signed, <type your name here>
+
+

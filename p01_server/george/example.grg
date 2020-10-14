@@ -1,0 +1,10 @@
+#u test
+#a 00
+#q 01
+
+#check DPLL
+
+(!p | !q | !r) & (!q | !r) & q & r
+
+
+

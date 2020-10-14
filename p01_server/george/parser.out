@@ -1,0 +1,618 @@
+Created by PLY version 3.4 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NUMBER
+    GR
+    LS
+    GRE
+    LSE
+    STAR
+    POWER
+    DIV
+    ADD
+    MINUS
+    BAR
+    LBRACKET
+    RBRACKET
+    PRIME
+    SEMI
+    TRANSPOSE
+    DOMR
+    RANR
+    DOMS
+    RANS
+    OVER
+    LIMAGE
+    RIMAGE
+    LNCB
+    RNCB
+    FORALL
+    EXISTS
+    SUB
+    SUBE
+    IN
+    UNION
+    INTERSECTION
+    DOMAIN
+    RANGE
+
+Grammar
+
+Rule 0     S' -> formula
+Rule 1     formula -> BOTTOM
+Rule 2     formula -> TOP
+Rule 3     formula -> ID
+Rule 4     term_tuple -> LPAREN term_list RPAREN
+Rule 5     term_tuple_seq -> term_tuple
+Rule 6     term_tuple_seq -> term_tuple_seq COMMA term_tuple
+Rule 7     formula -> term EQ term
+Rule 8     formula -> term NOT_EQ term
+Rule 9     formula -> NOT formula
+Rule 10    formula -> formula AND formula
+Rule 11    formula -> formula OR formula
+Rule 12    formula -> formula IMP formula
+Rule 13    formula -> formula IFF formula
+Rule 14    id_list -> ID
+Rule 15    id_list -> id_list COMMA ID
+Rule 16    formula -> LPAREN formula RPAREN
+Rule 17    term -> ID
+Rule 18    member_seq -> COLON id_in_id_seq
+Rule 19    member_seq -> <empty>
+Rule 20    id_in_id_seq -> ID INN ID
+Rule 21    id_in_id_seq -> id_in_id_seq COMMA ID INN ID
+Rule 22    term -> LPAREN term RPAREN
+Rule 23    term_list -> term
+Rule 24    term_list -> term_list COMMA term
+
+Terminals, with rules where they appear
+
+ADD                  : 
+AND                  : 10
+BAR                  : 
+BOTTOM               : 1
+COLON                : 18
+COMMA                : 6 15 21 24
+DIV                  : 
+DOMAIN               : 
+DOMR                 : 
+DOMS                 : 
+EQ                   : 7
+EXISTS               : 
+FORALL               : 
+GR                   : 
+GRE                  : 
+ID                   : 3 14 15 17 20 20 21 21
+IFF                  : 13
+IMP                  : 12
+IN                   : 
+INN                  : 20 21
+INTERSECTION         : 
+LBRACKET             : 
+LIMAGE               : 
+LNCB                 : 
+LPAREN               : 4 16 22
+LS                   : 
+LSE                  : 
+MINUS                : 
+NOT                  : 9
+NOT_EQ               : 8
+NUMBER               : 
+OR                   : 11
+OVER                 : 
+POWER                : 
+PRIME                : 
+RANGE                : 
+RANR                 : 
+RANS                 : 
+RBRACKET             : 
+RIMAGE               : 
+RNCB                 : 
+RPAREN               : 4 16 22
+SEMI                 : 
+STAR                 : 
+SUB                  : 
+SUBE                 : 
+TOP                  : 2
+TRANSPOSE            : 
+UNION                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+formula              : 9 10 10 11 11 12 12 13 13 16 0
+id_in_id_seq         : 18 21
+id_list              : 15
+member_seq           : 
+term                 : 7 7 8 8 22 23 24
+term_list            : 4 24
+term_tuple           : 5 6
+term_tuple_seq       : 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . formula
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 1
+    term                           shift and go to state 5
+
+state 1
+
+    (0) S' -> formula .
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    AND             shift and go to state 8
+    OR              shift and go to state 9
+    IMP             shift and go to state 10
+    IFF             shift and go to state 11
+
+
+state 2
+
+    (1) formula -> BOTTOM .
+
+    AND             reduce using rule 1 (formula -> BOTTOM .)
+    OR              reduce using rule 1 (formula -> BOTTOM .)
+    IMP             reduce using rule 1 (formula -> BOTTOM .)
+    IFF             reduce using rule 1 (formula -> BOTTOM .)
+    $end            reduce using rule 1 (formula -> BOTTOM .)
+    RPAREN          reduce using rule 1 (formula -> BOTTOM .)
+
+
+state 3
+
+    (2) formula -> TOP .
+
+    AND             reduce using rule 2 (formula -> TOP .)
+    OR              reduce using rule 2 (formula -> TOP .)
+    IMP             reduce using rule 2 (formula -> TOP .)
+    IFF             reduce using rule 2 (formula -> TOP .)
+    $end            reduce using rule 2 (formula -> TOP .)
+    RPAREN          reduce using rule 2 (formula -> TOP .)
+
+
+state 4
+
+    (3) formula -> ID .
+    (17) term -> ID .
+
+  ! reduce/reduce conflict for RPAREN resolved using rule 3 (formula -> ID .)
+    AND             reduce using rule 3 (formula -> ID .)
+    OR              reduce using rule 3 (formula -> ID .)
+    IMP             reduce using rule 3 (formula -> ID .)
+    IFF             reduce using rule 3 (formula -> ID .)
+    $end            reduce using rule 3 (formula -> ID .)
+    RPAREN          reduce using rule 3 (formula -> ID .)
+    EQ              reduce using rule 17 (term -> ID .)
+    NOT_EQ          reduce using rule 17 (term -> ID .)
+
+  ! RPAREN          [ reduce using rule 17 (term -> ID .) ]
+
+
+state 5
+
+    (7) formula -> term . EQ term
+    (8) formula -> term . NOT_EQ term
+
+    EQ              shift and go to state 12
+    NOT_EQ          shift and go to state 13
+
+
+state 6
+
+    (9) formula -> NOT . formula
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 14
+    term                           shift and go to state 5
+
+state 7
+
+    (16) formula -> LPAREN . formula RPAREN
+    (22) term -> LPAREN . term RPAREN
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 15
+    term                           shift and go to state 16
+
+state 8
+
+    (10) formula -> formula AND . formula
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 17
+    term                           shift and go to state 5
+
+state 9
+
+    (11) formula -> formula OR . formula
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 18
+    term                           shift and go to state 5
+
+state 10
+
+    (12) formula -> formula IMP . formula
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 19
+    term                           shift and go to state 5
+
+state 11
+
+    (13) formula -> formula IFF . formula
+    (1) formula -> . BOTTOM
+    (2) formula -> . TOP
+    (3) formula -> . ID
+    (7) formula -> . term EQ term
+    (8) formula -> . term NOT_EQ term
+    (9) formula -> . NOT formula
+    (10) formula -> . formula AND formula
+    (11) formula -> . formula OR formula
+    (12) formula -> . formula IMP formula
+    (13) formula -> . formula IFF formula
+    (16) formula -> . LPAREN formula RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    BOTTOM          shift and go to state 2
+    TOP             shift and go to state 3
+    ID              shift and go to state 4
+    NOT             shift and go to state 6
+    LPAREN          shift and go to state 7
+
+    formula                        shift and go to state 20
+    term                           shift and go to state 5
+
+state 12
+
+    (7) formula -> term EQ . term
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    ID              shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    term                           shift and go to state 21
+
+state 13
+
+    (8) formula -> term NOT_EQ . term
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    ID              shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    term                           shift and go to state 24
+
+state 14
+
+    (9) formula -> NOT formula .
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    AND             reduce using rule 9 (formula -> NOT formula .)
+    OR              reduce using rule 9 (formula -> NOT formula .)
+    IMP             reduce using rule 9 (formula -> NOT formula .)
+    IFF             reduce using rule 9 (formula -> NOT formula .)
+    $end            reduce using rule 9 (formula -> NOT formula .)
+    RPAREN          reduce using rule 9 (formula -> NOT formula .)
+
+  ! AND             [ shift and go to state 8 ]
+  ! OR              [ shift and go to state 9 ]
+  ! IMP             [ shift and go to state 10 ]
+  ! IFF             [ shift and go to state 11 ]
+
+
+state 15
+
+    (16) formula -> LPAREN formula . RPAREN
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    RPAREN          shift and go to state 25
+    AND             shift and go to state 8
+    OR              shift and go to state 9
+    IMP             shift and go to state 10
+    IFF             shift and go to state 11
+
+
+state 16
+
+    (22) term -> LPAREN term . RPAREN
+    (7) formula -> term . EQ term
+    (8) formula -> term . NOT_EQ term
+
+    RPAREN          shift and go to state 26
+    EQ              shift and go to state 12
+    NOT_EQ          shift and go to state 13
+
+
+state 17
+
+    (10) formula -> formula AND formula .
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    AND             reduce using rule 10 (formula -> formula AND formula .)
+    OR              reduce using rule 10 (formula -> formula AND formula .)
+    IMP             reduce using rule 10 (formula -> formula AND formula .)
+    IFF             reduce using rule 10 (formula -> formula AND formula .)
+    $end            reduce using rule 10 (formula -> formula AND formula .)
+    RPAREN          reduce using rule 10 (formula -> formula AND formula .)
+
+  ! AND             [ shift and go to state 8 ]
+  ! OR              [ shift and go to state 9 ]
+  ! IMP             [ shift and go to state 10 ]
+  ! IFF             [ shift and go to state 11 ]
+
+
+state 18
+
+    (11) formula -> formula OR formula .
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    OR              reduce using rule 11 (formula -> formula OR formula .)
+    IMP             reduce using rule 11 (formula -> formula OR formula .)
+    IFF             reduce using rule 11 (formula -> formula OR formula .)
+    $end            reduce using rule 11 (formula -> formula OR formula .)
+    RPAREN          reduce using rule 11 (formula -> formula OR formula .)
+    AND             shift and go to state 8
+
+  ! AND             [ reduce using rule 11 (formula -> formula OR formula .) ]
+  ! OR              [ shift and go to state 9 ]
+  ! IMP             [ shift and go to state 10 ]
+  ! IFF             [ shift and go to state 11 ]
+
+
+state 19
+
+    (12) formula -> formula IMP formula .
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    IFF             reduce using rule 12 (formula -> formula IMP formula .)
+    $end            reduce using rule 12 (formula -> formula IMP formula .)
+    RPAREN          reduce using rule 12 (formula -> formula IMP formula .)
+    AND             shift and go to state 8
+    OR              shift and go to state 9
+    IMP             shift and go to state 10
+
+  ! AND             [ reduce using rule 12 (formula -> formula IMP formula .) ]
+  ! OR              [ reduce using rule 12 (formula -> formula IMP formula .) ]
+  ! IMP             [ reduce using rule 12 (formula -> formula IMP formula .) ]
+  ! IFF             [ shift and go to state 11 ]
+
+
+state 20
+
+    (13) formula -> formula IFF formula .
+    (10) formula -> formula . AND formula
+    (11) formula -> formula . OR formula
+    (12) formula -> formula . IMP formula
+    (13) formula -> formula . IFF formula
+
+    IFF             reduce using rule 13 (formula -> formula IFF formula .)
+    $end            reduce using rule 13 (formula -> formula IFF formula .)
+    RPAREN          reduce using rule 13 (formula -> formula IFF formula .)
+    AND             shift and go to state 8
+    OR              shift and go to state 9
+    IMP             shift and go to state 10
+
+  ! AND             [ reduce using rule 13 (formula -> formula IFF formula .) ]
+  ! OR              [ reduce using rule 13 (formula -> formula IFF formula .) ]
+  ! IMP             [ reduce using rule 13 (formula -> formula IFF formula .) ]
+  ! IFF             [ shift and go to state 11 ]
+
+
+state 21
+
+    (7) formula -> term EQ term .
+
+    AND             reduce using rule 7 (formula -> term EQ term .)
+    OR              reduce using rule 7 (formula -> term EQ term .)
+    IMP             reduce using rule 7 (formula -> term EQ term .)
+    IFF             reduce using rule 7 (formula -> term EQ term .)
+    $end            reduce using rule 7 (formula -> term EQ term .)
+    RPAREN          reduce using rule 7 (formula -> term EQ term .)
+
+
+state 22
+
+    (17) term -> ID .
+
+    AND             reduce using rule 17 (term -> ID .)
+    OR              reduce using rule 17 (term -> ID .)
+    IMP             reduce using rule 17 (term -> ID .)
+    IFF             reduce using rule 17 (term -> ID .)
+    $end            reduce using rule 17 (term -> ID .)
+    RPAREN          reduce using rule 17 (term -> ID .)
+
+
+state 23
+
+    (22) term -> LPAREN . term RPAREN
+    (17) term -> . ID
+    (22) term -> . LPAREN term RPAREN
+
+    ID              shift and go to state 22
+    LPAREN          shift and go to state 23
+
+    term                           shift and go to state 27
+
+state 24
+
+    (8) formula -> term NOT_EQ term .
+
+    AND             reduce using rule 8 (formula -> term NOT_EQ term .)
+    OR              reduce using rule 8 (formula -> term NOT_EQ term .)
+    IMP             reduce using rule 8 (formula -> term NOT_EQ term .)
+    IFF             reduce using rule 8 (formula -> term NOT_EQ term .)
+    $end            reduce using rule 8 (formula -> term NOT_EQ term .)
+    RPAREN          reduce using rule 8 (formula -> term NOT_EQ term .)
+
+
+state 25
+
+    (16) formula -> LPAREN formula RPAREN .
+
+    AND             reduce using rule 16 (formula -> LPAREN formula RPAREN .)
+    OR              reduce using rule 16 (formula -> LPAREN formula RPAREN .)
+    IMP             reduce using rule 16 (formula -> LPAREN formula RPAREN .)
+    IFF             reduce using rule 16 (formula -> LPAREN formula RPAREN .)
+    $end            reduce using rule 16 (formula -> LPAREN formula RPAREN .)
+    RPAREN          reduce using rule 16 (formula -> LPAREN formula RPAREN .)
+
+
+state 26
+
+    (22) term -> LPAREN term RPAREN .
+
+    EQ              reduce using rule 22 (term -> LPAREN term RPAREN .)
+    NOT_EQ          reduce using rule 22 (term -> LPAREN term RPAREN .)
+    RPAREN          reduce using rule 22 (term -> LPAREN term RPAREN .)
+    AND             reduce using rule 22 (term -> LPAREN term RPAREN .)
+    OR              reduce using rule 22 (term -> LPAREN term RPAREN .)
+    IMP             reduce using rule 22 (term -> LPAREN term RPAREN .)
+    IFF             reduce using rule 22 (term -> LPAREN term RPAREN .)
+    $end            reduce using rule 22 (term -> LPAREN term RPAREN .)
+
+
+state 27
+
+    (22) term -> LPAREN term . RPAREN
+
+    RPAREN          shift and go to state 26
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: reduce/reduce conflict in state 4 resolved using rule (formula -> ID)
+WARNING: rejected rule (term -> ID) in state 4
